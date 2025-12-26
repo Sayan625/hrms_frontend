@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HR Attendance Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="vh-100">
+    <div class="row m-0 h-100">
+        <div class="col-2 p-0" id="sidebar">
+
+        </div>
+        <div class="col-10">
+            <div class="container mt-4">
+
+                <h4 class="mb-4">Search</h4>
+                <div class="row g-3 align-items-end mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label">Employee</label>
+                        <select class="form-select" id="employeeSelect">
+                            <option value="">Select Employee</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" id="attendanceDate" class="form-control">
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn btn-primary w-100" onclick="searchAttendance()">
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-striped d-none" id="resultTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Employee</th>
+                            <th>Status</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="searchTable"></tbody>
+                </table>
+
+            </div>
+
+            <div class="container mt-4">
+                <div class="d-flex justify-content-between mb-3">
+                    <h4>Today Attendance</h4>
+                </div>
+
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Employee</th>
+                            <th>Status</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTable"></tbody>
+                </table>
+
+            </div>
+            <div class="modal fade" id="editAttendanceModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Attendance</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <input type="hidden" id="empId">
+
+                            <div class="mb-2">
+                                <label>Date</label>
+                                <input type="date" id="attDate" class="form-control">
+                            </div>
+
+                            <div class="mb-2">
+                                <label>Check In</label>
+                                <input type="time" id="checkIn" class="form-control">
+                            </div>
+
+                            <div class="mb-2">
+                                <label>Check Out</label>
+                                <input type="time" id="checkOut" class="form-control">
+                            </div>
+                            <div class="mb-2">
+                                <label>Type</label>
+                                <select id="requestType" class="form-select">
+                                    <option value="normal">Normal</option>
+                                    <option value="leave">Leave</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" onclick="saveAttendance()">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="showSummeryModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Attendance Summary</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <input type="month" id="monthPickerSum" class="form-control w-auto">
+                                <button class="btn btn-primary" onclick="loadMonthlySummary()">Search</button>
+                            </div>
+                            <div id="summary">
+                                <p>Month: <span id="month"></span></p>
+                                <p>Year: <span id="year"></span></p>
+                                <p>Full Days: <span id="fullDays"></span></p>
+                                <p>Half Days: <span id="halfDays"></span></p>
+                                <p>Total Units: <span id="totalUnits"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./attendance.js"> </script>
+    <script src="./sidebar.js"> </script>
+
+</body>
+
+</html>

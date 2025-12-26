@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Departments</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+
+<body class="vh-100">
+    <div class="row m-0 h-100">
+        <div class="col-2 p-0" id="sidebar"></div>
+        <div class="col-10">
+            <div class="container mt-4">
+
+                <h3>Departments</h3>
+                <form id="deptForm" class="row g-2 mb-4">
+                    <div class="col-md-6">
+                        <input type="text" name="name" class="form-control" placeholder="Department name" required>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+
+                <h4>Move Employee</h4>
+
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <select id="empSelect" class="form-select"></select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select id="deptSelect" class="form-select"></select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-success" onclick="moveEmployee()">
+                            Move
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container mt-4">
+                <h3 class="mb-3">Overview</h3>
+
+                <table class="table table-bordered table-striped">
+                    <thead class="table-striped">
+                        <tr>
+                            <th>#</th>
+                            <th>Department</th>
+                            <th>Total Employees</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="deptTableBody">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./department.js"></script>
+    <script src="./sidebar.js"></script>
+</body>
+
+</html>
