@@ -153,16 +153,21 @@ async function updateCalender() {
         if (item.checkOut) {
             checkOutTime = item.checkOut.split(/[:.]/)[0] + ":" + item.checkOut.split(/[:.]/)[1];
         }
+        
+        if(checkOutTime!="NA" && checkInTime!="NA"){
+            document.getElementById("checkInBtn").disabled = true
+            document.getElementById("checkOutBtn").disabled = true
+        }
+
         if (checkInTime == "NA") {
             document.getElementById("checkInBtn").disabled = false
             document.getElementById("checkOutBtn").disabled = true
 
-
         } else {
             document.getElementById("checkInBtn").disabled = true
             document.getElementById("checkOutBtn").disabled = false
-
         }
+
 
         if (checkInTime != "NA" || checkOutTime != "NA")
             cell.innerHTML += `<small class="p-0 m-0 d-block text-muted lh-1" style="font-size: 0.7rem;">${checkInTime} - ${checkOutTime}</small>`;
